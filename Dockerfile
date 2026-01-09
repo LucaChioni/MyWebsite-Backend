@@ -12,7 +12,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
+COPY main.py migrate.py run.py ./
+COPY migrations ./migrations
 
 EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "run.py"]
+
+# con questo comando avvia il server uvicorn => ora lo fa python
+# CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -6,7 +6,15 @@
       "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["main:app", "--host", "0.0.0.0", "--port", "8000"],
+      "args": ["api:app", "--host", "0.0.0.0", "--port", "8000"],
+      "jinja": true
+    },
+    {
+      "name": "Migration + API",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "console": "integratedTerminal",
       "jinja": true
     }
   ]
