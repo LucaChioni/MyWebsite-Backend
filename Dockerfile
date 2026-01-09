@@ -12,7 +12,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py migrate.py run.py ./
+COPY api.py migrate.py run.py ./
 COPY migrations ./migrations
 
 EXPOSE 8000
