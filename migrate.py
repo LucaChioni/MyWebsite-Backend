@@ -1,12 +1,10 @@
-from __future__ import annotations
-
 import os
 import time
+import psycopg
 from pathlib import Path
 
-import psycopg
 
-
+LOCK_KEY = 987654321
 MIGRATIONS_DIR = Path(__file__).parent / "migrations"
 MIG_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -14,8 +12,6 @@ CREATE TABLE IF NOT EXISTS schema_migrations (
   applied_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 """
-
-LOCK_KEY = 987654321  # numero qualsiasi costante per advisory lock
 
 
 def wait_for_db(conninfo: str, attempts: int = 60, delay_s: float = 1.0) -> None:
@@ -33,11 +29,11 @@ def wait_for_db(conninfo: str, attempts: int = 60, delay_s: float = 1.0) -> None
 
 
 def get_conninfo_from_env() -> str:
-    host = os.getenv("DB_HOST", "db")
-    port = os.getenv("DB_PORT", "5432")
-    name = os.getenv("DB_NAME", "appdb")
-    user = os.getenv("DB_USER", "appuser")
-    pw = os.getenv("DB_PASSWORD", "apppassword")
+    host = os.getenv("DB_HOST")
+    port = os.getenv("DB_PORT")
+    name = os.getenv("DB_NAME")
+    user = os.getenv("DB_USER")
+    pw = os.getenv("DB_PASSWORD")
     return f"postgresql://{user}:{pw}@{host}:{port}/{name}"
 
 
@@ -77,7 +73,7 @@ def run_migration() -> None:
         return
 
     with psycopg.connect(conninfo) as conn:
-        # IMPORTANT: lock per evitare che due istanze applichino migrazioni insieme
+        # lock per evitare che due istanze applichino migrazioni insieme
         with conn.cursor() as cur:
             cur.execute("SELECT pg_advisory_lock(%s);", (LOCK_KEY,))
 

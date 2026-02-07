@@ -5,11 +5,9 @@ CREATE TABLE IF NOT EXISTS schema_migrations (
   applied_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- esempio tabella applicativa
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS api_keys (
   id BIGSERIAL PRIMARY KEY,
-  email TEXT NOT NULL UNIQUE,
-  hash_password TEXT NOT NULL,
+  api_key TEXT NOT NULL UNIQUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
