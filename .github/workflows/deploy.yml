@@ -1,0 +1,13 @@
+name: CI workflow call
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  deploy:
+    uses: LucaChioni/MyWebsite-Infrastructure/.github/workflows/deploy.yml@master
+    secrets:
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
