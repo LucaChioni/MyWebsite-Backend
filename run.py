@@ -1,4 +1,3 @@
-
 import os
 import uvicorn
 from migrate import run_migration
