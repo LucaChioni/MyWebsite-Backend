@@ -1,11 +1,14 @@
-import os
-import time
-import psycopg
+import logging
 from pathlib import Path
+import psycopg
+from db_connection import get_db_connection
 
+
+logger = logging.getLogger(__name__)
 
 LOCK_KEY = 987654321
 MIGRATIONS_DIR = Path(__file__).parent / "migrations"
+
 MIG_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS schema_migrations (
   version TEXT PRIMARY KEY,
@@ -14,89 +17,83 @@ CREATE TABLE IF NOT EXISTS schema_migrations (
 """
 
 
-def wait_for_db(conninfo: str, attempts: int = 60, delay_s: float = 1.0) -> None:
-    last_err = None
-    for _ in range(attempts):
+def run_migrations() -> None:
+    files = _list_migration_files()
+
+    if not files:
+        logger.info("No migrations found, skipping.")
+        return
+
+    with get_db_connection() as conn:
+        _acquire_lock(conn)
+
         try:
-            with psycopg.connect(conninfo) as conn:
-                with conn.cursor() as cur:
-                    cur.execute("SELECT 1;")
-            return
-        except Exception as e:
-            last_err = e
-            time.sleep(delay_s)
-    raise RuntimeError(f"DB not ready after {attempts} attempts: {last_err}")
+            _ensure_migrations_table(conn)
+            applied_versions = _get_applied_versions(conn)
+
+            for path in files:
+                version = path.name
+
+                if version in applied_versions:
+                    logger.debug("Migration already applied, skipping: %s", version)
+                    continue
+
+                sql = path.read_text(encoding="utf-8")
+
+                logger.info("Applying migration: %s", version)
+                _apply_migration(conn, version, sql)
+
+                conn.commit()
+
+                logger.info("Migration applied: %s", version)
+
+            logger.info("Migrations complete.")
+
+        except Exception:
+            logger.exception("Migration failed.")
+            conn.rollback()
+            raise
+
+        finally:
+            _release_lock(conn)
 
 
-def get_conninfo_from_env() -> str:
-    host = os.getenv("DB_HOST")
-    port = os.getenv("DB_PORT")
-    name = os.getenv("DB_NAME")
-    user = os.getenv("DB_USER")
-    pw = os.getenv("DB_PASSWORD")
-    return f"postgresql://{user}:{pw}@{host}:{port}/{name}"
-
-
-def list_migration_files() -> list[Path]:
+def _list_migration_files() -> list[Path]:
     if not MIGRATIONS_DIR.exists():
+        logger.warning("Migrations directory does not exist: %s", MIGRATIONS_DIR)
         return []
-    files = sorted(MIGRATIONS_DIR.glob("*.sql"))
-    return files
+
+    return sorted(MIGRATIONS_DIR.glob("*.sql"))
 
 
-def ensure_migrations_table(conn: psycopg.Connection) -> None:
+def _acquire_lock(conn: psycopg.Connection) -> None:
+    with conn.cursor() as cur:
+        cur.execute("SELECT pg_advisory_lock(%s);", (LOCK_KEY,))
+
+
+def _release_lock(conn: psycopg.Connection) -> None:
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT pg_advisory_unlock(%s);", (LOCK_KEY,))
+        conn.commit()
+    except Exception:
+        logger.exception("Failed to release migration lock.")
+        conn.rollback()
+        raise
+
+
+def _ensure_migrations_table(conn: psycopg.Connection) -> None:
     with conn.cursor() as cur:
         cur.execute(MIG_TABLE_SQL)
 
 
-def get_applied_versions(conn: psycopg.Connection) -> set[str]:
+def _get_applied_versions(conn: psycopg.Connection) -> set[str]:
     with conn.cursor() as cur:
         cur.execute("SELECT version FROM schema_migrations;")
         return {row[0] for row in cur.fetchall()}
 
 
-def apply_migration(conn: psycopg.Connection, version: str, sql: str) -> None:
+def _apply_migration(conn: psycopg.Connection, version: str, sql: str) -> None:
     with conn.cursor() as cur:
         cur.execute(sql)
         cur.execute("INSERT INTO schema_migrations(version) VALUES (%s);", (version,))
-
-
-def run_migration() -> None:
-    conninfo = get_conninfo_from_env()
-
-    print("Waiting for DB...")
-    wait_for_db(conninfo)
-
-    files = list_migration_files()
-    if not files:
-        print("No migrations found; skipping.")
-        return
-
-    with psycopg.connect(conninfo) as conn:
-        # lock per evitare che due istanze applichino migrazioni insieme
-        with conn.cursor() as cur:
-            cur.execute("SELECT pg_advisory_lock(%s);", (LOCK_KEY,))
-
-        try:
-            ensure_migrations_table(conn)
-            applied = get_applied_versions(conn)
-
-            for path in files:
-                version = path.name
-                if version in applied:
-                    continue
-
-                sql = path.read_text(encoding="utf-8")
-                print(f"Applying migration: {version}")
-                apply_migration(conn, version, sql)
-                conn.commit()
-
-            print("Migrations complete.")
-        finally:
-            with conn.cursor() as cur:
-                cur.execute("SELECT pg_advisory_unlock(%s);", (LOCK_KEY,))
-            conn.commit()
-
-
-if __name__ == "__main__":
-    run_migration()

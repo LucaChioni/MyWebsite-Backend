@@ -1,26 +1,21 @@
-import os
+import logging
 from fastapi import FastAPI
-import psycopg
-from migrate import run_migration
+from db_connection import get_db_connection
+from migrate import run_migrations
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
+
+run_migrations()
 
 app = FastAPI()
 
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = int(os.getenv("DB_PORT"))
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-
-run_migration()
-
-def get_conn():
-    return psycopg.connect(
-        host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD
-    )
-
 @app.get("/api/access_secrets")
 def access_secrets(apiKey: str):
-    with get_conn() as conn:
+    with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT api_key FROM api_keys WHERE api_key = %s LIMIT 1;", [apiKey])
             result = cur.fetchone()
