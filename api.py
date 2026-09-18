@@ -1,5 +1,6 @@
 import logging
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from chat import ChatRequest, chat
 from db_connection import get_db_connection
 from migrate import run_migrations
 
@@ -22,3 +23,9 @@ def access_secrets(apiKey: str):
     access = result is not None
 
     return {"success": True, "access": access}
+
+
+@app.post("/api/chat")
+async def chat_endpoint(request: Request, body: ChatRequest):
+    print("Received chat request:", body)
+    return await chat(request, body)
