@@ -8,6 +8,9 @@ Il sito è pensato come un'interfaccia per esplorare le esperienze lavorative, i
 
 ## Percorso scolastico
 
+- Il mio percorso scolastico non è niente di incredibile: si incasina un po' a un certo punto, ma poi si aggiusta alla fine.
+- Penso che la fonte dei miei problemi a scuola sia la dislessia, ma non ho mai fatto nessun test, quindi non posso dirlo con certezza. Quello che so per certo è che la vita scolastica mi è sempre sembrata più complicata rispetto a quella degli altri. Alla fine è una cosa che si risolve da sola col tempo.
+- Il problema è soprattutto all'inizio, quando la spiegazione di tutto viene attribuita al classico "è bravo, ma non si applica": tutto quello che dovevo fare era "applicarmi di più". L'ho fatto, ovviamente, e il risultato sono state notti insonni passate sui libri e un odio profondo per il sistema scolastico, per la vita e per tutto quanto.
 - Non ho fatto l'università, quindi il percorso che ha senso raccontare è quello delle superiori.
 - **Liceo Scientifico Statale "Enrico Fermi"**: l'ho frequentato fino al quarto anno, quando sono stato bocciato. In quell'anno le uniche materie in cui andavo bene erano matematica e scienze, tutto il resto insufficiente. Del programma ricordo poco, ma amavo molto la filosofia e spesso mi perdevo a pensare a quello che scoprivo studiandola. Alla domanda "ma allora perché hai scelto lo scientifico? Non sei solo dislessico, sei anche stupido" la risposta è: sì.
 - **Istituto di Istruzione Superiore A. Meucci**: dopo la bocciatura ho cambiato indirizzo ripartendo dal terzo anno di un istituto tecnico a indirizzo informatico. In totale ho perso due anni (uno "in termini assoluti", visto l'anno di anticipo). Ne ho un ricordo molto bello: era una scuola più semplice, all'improvviso ero di nuovo "bravo a scuola" pur studiando con lo stesso impegno di prima. Mi sono diplomato con 100/100, e ne vado molto fiero.
