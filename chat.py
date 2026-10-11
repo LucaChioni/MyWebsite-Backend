@@ -14,8 +14,9 @@ from db_connection import get_db_connection
 
 logger = logging.getLogger(__name__)
 
-MODEL = "claude-haiku-4-5"
-MAX_OUTPUT_TOKENS = 400
+MODEL = "claude-haiku-5-5"
+EFFORT = "low"                       # thinking is always on: keep it minimal for short replies
+MAX_OUTPUT_TOKENS = 1000             # includes thinking tokens
 MAX_MESSAGES = 10
 MAX_USER_CHARS = 500
 MAX_ASSISTANT_CHARS = 3000
@@ -160,6 +161,7 @@ async def chat(request: Request, body: ChatRequest) -> dict:
         response = await client.messages.create(
             model=MODEL,
             max_tokens=MAX_OUTPUT_TOKENS,
+            output_config={"effort": EFFORT},
             system=system,
             messages=[m.model_dump() for m in body.messages],
         )

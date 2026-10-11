@@ -10,7 +10,7 @@ Backend repository for my [Personal Website](https://lucachioni.com/).
 
 ## Chat
 
-`POST /api/chat` returns `{"reply": ..., "conversation_id": ...}` from Claude (`claude-haiku-4-5`) impersonating me, using `data/about_me.md` as its only knowledge.
+`POST /api/chat` returns `{"reply": ..., "conversation_id": ...}` from Claude (`claude-haiku-5-5`) impersonating me, using `data/about_me.md` as its only knowledge.
 
 The Anthropic API key is read from the `app_settings` table (created by `migrations/migration_002.sql`):
 

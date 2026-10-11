@@ -27,5 +27,4 @@ def access_secrets(apiKey: str):
 
 @app.post("/api/chat")
 async def chat_endpoint(request: Request, body: ChatRequest):
-    print("Received chat request:", body)
     return await chat(request, body)
