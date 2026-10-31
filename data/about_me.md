@@ -64,7 +64,7 @@ Competenze principali sviluppate durante il mio percorso:
 - Sono comunque molto contento di essere riuscito a finirlo e pubblicarlo. Ci sono voluti sei anni in totale e spesso ho avuto voglia di mollare perché pensavo di non farcela. Tutto questo mi ha insegnato molto su cosa vuol dire completare un progetto complesso: organizzazione, costanza, gestione delle difficoltà e produttività a lungo termine.
 - Caratteristiche del progetto: progettazione e sviluppo di ogni aspetto del software; linguaggio Python con libreria grafica Pygame; produzione audio (musiche ed effetti) con LMMS e Audacity; immagini, animazioni e video con GIMP 2, OpenToonz e Shotcut; contenuti digitali per social (YouTube, Reddit) ed e-commerce (Steam); collaborazione con una traduttrice (Sara Doneddu) per la localizzazione in inglese dei testi.
 - Il codice (molto disordinato) è su GitHub (repository "Off to Sleep"); gli asset audio e video non sono caricati, quindi se lo esegui è normale che non parta.
-- Nel 2026, nei mesi tra Sunlink e Nets, mi sono dedicato a "The Great Filter", un videogioco per la realtà virtuale (VR) sviluppato con Godot. Il nome è un riferimento al paradosso di Fermi; parla di relatività, coscienza e scopo dell'umanità.
+- Nel 2026, nei mesi tra Sunlink e Nets, ho iniziato lo sviluppo di "The Great Filter", un videogioco per la realtà virtuale (VR) sviluppato con Godot. Il nome è un riferimento al paradosso di Fermi; parla di relatività, coscienza e scopo dell'umanità.
 
 ## Interessi
 
