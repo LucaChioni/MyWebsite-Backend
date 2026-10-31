@@ -21,12 +21,12 @@ Il sito è pensato come un'interfaccia per esplorare le esperienze lavorative, i
 
 ## Esperienza lavorativa
 
-Competenze principali nel campo dello sviluppo web:
-- Linguaggi usati spesso: Python, Node.js/TypeScript.
-- Linguaggi con conoscenza base / da rispolverare: Java, PHP, C++, C.
+Competenze principali sviluppate durante il mio percorso:
+- Linguaggi usati spesso: Python, Node.js/TypeScript, PHP, Ladder.
+- Linguaggi con conoscenza base / da rispolverare: Java, C++, C.
 - Front-end: HTML, CSS, JavaScript/TypeScript, Vue.js.
-- Database: Postgres in ambito lavorativo, MySQL a scuola.
-- Framework Odoo: sviluppo moduli e creazione API.
+- Database: Postgres, TimescaleDB, MySQL.
+- Framework Odoo, FastAPI e Laravel: sviluppo moduli, creazione API e gestione database.
 - DevOps e ambienti di lavoro: Docker, sistemi Linux, versionamento con Git.
 
 ### BNova Srl (ottobre 2018 – ottobre 2020)
@@ -44,6 +44,15 @@ Competenze principali nel campo dello sviluppo web:
 - Attività principali: back-end con il framework Odoo per la gestione del database (Postgres) e API in Python per la web app e altri servizi; software in Node.js su mini-PC installati nei siti monitorati per organizzare, elaborare e trasformare grandi quantità di dati (con TimescaleDB); integrazione di sistemi eterogenei per la raccolta dati da dispositivi industriali tramite protocolli OPC UA e Modbus TCP/RTU (PLC e contatori) e da servizi di terze parti via API (inverter GoodWe, ZCS, ABB e SolarEdge); test automatizzati in Python e Node.js; supporto occasionale al front-end con Vue.js e TypeScript.
 - Prima del mio arrivo il software era gestito da due persone e sviluppato da aziende esterne. Nel giro di pochi mesi si sono aggiunti altri tre sviluppatori. Ci siamo trovati subito bene, ma trovare una struttura e un'organizzazione per lo sviluppo non era scontato: ci sono stati periodi piuttosto caotici, con le classiche dinamiche delle piccole startup (carichi di lavoro gestiti male, sviluppi "urgenti" con scadenze impossibili, idee poco chiare sulle direzioni di sviluppo). Guardandomi indietro però abbiamo fatto molta strada, e c'è una certa soddisfazione nel vedere il livello di efficienza raggiunto dal team in quei tre anni.
 
+### Nets Srl, Seravezza (ottobre 2026 – oggi)
+
+- Lavoro attuale, come sviluppatore software.
+- Dopo Sunlink ho mandato un sacco di candidature e sono stato ignorato da tantissime aziende. Alla fine ho trovato Nets, che è stata molto entusiasta di assumermi e di iniziare un percorso insieme, anche se non avevo nessuna esperienza in ambito elettronico.
+- Nets si occupa di automazione industriale: gran parte del lavoro riguarda componenti elettrici, schemi elettrici, quadri elettrici e simili, di cui prima di iniziare non sapevo praticamente nulla.
+- Come sviluppatore software mi occupo principalmente di creare il software per i macchinari, ma per farlo bisogna conoscere bene anche i componenti che si comandano con il PLC.
+- Attività principali: programmazione PLC in linguaggio Ladder, con implementazione delle logiche di controllo a partire da matrici causa-effetto; lettura e interpretazione di schemi elettrici e studio della componentistica elettrica industriale.
+- Nei mesi tra Sunlink e Nets (aprile – ottobre 2026) non ho lavorato in nessuna azienda, ma ho fatto progetti personali, pubblicati sul mio GitHub, per esercitarmi con PHP, Laravel, Inertia, MySQL, Vue, FastAPI, SQLAlchemy, Docker e Nginx, e soprattutto mi sono dedicato allo sviluppo di un videogioco per la realtà virtuale (VR) con Godot. Il nome del gioco è "The Great Filter" (riferimento al paradosso di Fermi), parla di relatività, coscienza e scopo dell'umanità.
+
 ## Sviluppo videogiochi
 
 - La passione per i videogiochi (vedi interessi) mi ha portato, nel 2015, appena imparato a programmare, a scrivere il mio primo videogioco: ero in terza superiore, avevo appena scoperto la logica di programmazione con il C++ e con quel linguaggio ho fatto una piccola avventura a riga di comando. Il giocatore controlla il personaggio "O", affronta combattimenti a turni e risolve piccoli enigmi ambientali. Non è granché, né come comandi né come tutto il resto. Il codice è su GitHub (repository "First Game"): da guardare solo se vuoi piangere sangue.
@@ -55,6 +64,7 @@ Competenze principali nel campo dello sviluppo web:
 - Sono comunque molto contento di essere riuscito a finirlo e pubblicarlo. Ci sono voluti sei anni in totale e spesso ho avuto voglia di mollare perché pensavo di non farcela. Tutto questo mi ha insegnato molto su cosa vuol dire completare un progetto complesso: organizzazione, costanza, gestione delle difficoltà e produttività a lungo termine.
 - Caratteristiche del progetto: progettazione e sviluppo di ogni aspetto del software; linguaggio Python con libreria grafica Pygame; produzione audio (musiche ed effetti) con LMMS e Audacity; immagini, animazioni e video con GIMP 2, OpenToonz e Shotcut; contenuti digitali per social (YouTube, Reddit) ed e-commerce (Steam); collaborazione con una traduttrice (Sara Doneddu) per la localizzazione in inglese dei testi.
 - Il codice (molto disordinato) è su GitHub (repository "Off to Sleep"); gli asset audio e video non sono caricati, quindi se lo esegui è normale che non parta.
+- Nel 2026, nei mesi tra Sunlink e Nets, mi sono dedicato a "The Great Filter", un videogioco per la realtà virtuale (VR) sviluppato con Godot. Il nome è un riferimento al paradosso di Fermi; parla di relatività, coscienza e scopo dell'umanità.
 
 ## Interessi
 
